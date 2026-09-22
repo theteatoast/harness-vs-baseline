@@ -4,10 +4,12 @@ Feeds a hand-written, deliberately-partial findings list and checks that the
 scorer correctly reports matches (via exact CWE, via keywords, and within the
 line tolerance), misses, and false positives. No API calls.
 """
+import pathlib
+
 from secagent.corpus.app_corpus import AppCorpus
 from secagent.corpus.base import Finding
 
-ROOT = "/Users/andy/Desktop/Harness/targets/nodegoat"
+ROOT = str(pathlib.Path(__file__).resolve().parents[1] / "targets" / "nodegoat")
 
 
 def main():

@@ -15,7 +15,7 @@ Run:  python targets/synthapp/_generate.py
 import pathlib
 import random
 
-ROOT = pathlib.Path("/Users/andy/Desktop/Harness/targets/synthapp")
+ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT / "src"
 
 # --- OBVIOUS classes: single recognizable sink line (off = 0-based vuln line in the block) ---
