@@ -12,8 +12,8 @@ harness beats a naive baseline. The core experiment, holding the **model fixed**
 > single-shot baseline ("here's the code, list every vulnerability") **vs.** the same model
 > driven through our harness — measured by how many *known* vulnerabilities each finds.
 
-Built from scratch — no agent framework. The point is to speak firsthand to **harness
-design** and **benchmarking**, the two things the Sarvam Cyber Team role cares about.
+Built from scratch, no agent framework. The point is to study **harness
+design** and **benchmarking** firsthand.
 
 Scope note: this benchmarks vulnerability **discovery** (static code audit), not
 **exploitation**. That is deliberate — it's the cheapest-to-verify stage of find→prove→fix,

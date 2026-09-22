@@ -1,6 +1,6 @@
 # BENCHMARKING.md — Evaluation Method
 
-The interview cares about *honest* benchmarking, not big numbers. This is the method we
+This project cares about *honest* benchmarking, not big numbers. This is the method we
 commit to **before** seeing results, so we can't rationalize afterward.
 
 ## The experiment
@@ -13,7 +13,7 @@ commit to **before** seeing results, so we can't rationalize afterward.
 | **harness** | the same model driven through Planner → Worker → Verifier |
 
 The headline result is the **recall gap**: how many *known* vulnerabilities each arm finds
-in the same code. This isolates the harness — the one thing the role is about — from model
+in the same code. This isolates the harness, the one variable that matters, from model
 strength, and it's cheap because both arms share one model.
 
 **Two axes, not one.** The ground truth is a curated set of *genuinely exploitable* vulns, so

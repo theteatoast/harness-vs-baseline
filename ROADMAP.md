@@ -37,7 +37,7 @@ as much about **suppressing noise (precision)** as **finding more (recall)**.
   *demonstrated* with a working PoC, not just asserted (the CVE-Bench-style exploitation
   extension). The harness code is unchanged; only the environment layer gains execution.
 - **Fix:** generate a patch, re-run the PoC to confirm it's closed, human-in-the-loop.
-  Completes Sarvam's find→prove→fix loop.
+  Completes the find→prove→fix loop.
 
 ## 4. Scale & rigor
 - Larger / public labeled corpora and real CVE datasets for statistically meaningful `n`.
