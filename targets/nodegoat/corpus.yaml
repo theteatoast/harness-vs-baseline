@@ -1,0 +1,6 @@
+inscope:
+  - "app/data/*.js"
+  - "app/routes/*.js"
+  - "server.js"
+exclude:
+  - "app/routes/tutorial.js"   # mounts the answer-key tutorial views

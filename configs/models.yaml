@@ -1,0 +1,18 @@
+# Model registry + pricing for cost accounting. Prices are USD per token
+# (OpenRouter list price, confirmed 2026-09-22). Update if OpenRouter changes them.
+models:
+  z-ai/glm-5.3-flash:
+    input_per_token:  0.00000015   # $0.15 / 1M
+    output_per_token: 0.00000050   # $0.50 / 1M
+    context: 1310720
+    note: primary cheap model (Flash tier) for the same-model experiment
+  z-ai/glm-5.3:
+    input_per_token:  0.00000084   # $0.84 / 1M
+    output_per_token: 0.00000264   # $2.64 / 1M
+    context: 1310720
+    note: stronger same-family model, optional comparison arm
+  meta-llama/llama-3.1-8b-instruct:
+    input_per_token:  0.00000005   # $0.05 / 1M
+    output_per_token: 0.00000008   # $0.08 / 1M
+    context: 131072
+    note: small open model for the weak-model recall probe (JD's "small model near frontier")

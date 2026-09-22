@@ -1,0 +1,8 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+results/
+!results/RESULTS.md
+targets/**/node_modules/
+targets/**/.git/

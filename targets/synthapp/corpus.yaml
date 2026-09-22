@@ -1,0 +1,3 @@
+inscope:
+  - "src/*.py"
+exclude: []

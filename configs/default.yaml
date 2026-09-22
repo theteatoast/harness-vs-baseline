@@ -1,0 +1,21 @@
+# Default run configuration.
+model: z-ai/glm-5.3-flash
+temperature: 0.2
+target: synthapp
+
+# GLM 5.3 Flash is a reasoning model — bound its hidden "thinking" so it can't consume the
+# whole output budget and starve the actual answer. Applied identically to both arms.
+reasoning:
+  max_tokens: 3000
+
+budgets:
+  max_steps: 40          # max worker tool-calls per run (harness arm)
+  max_tokens: 300000     # hard token ceiling per run
+  wall_clock_s: 900
+
+ablation:
+  planner: true
+  verifier: true
+
+cache: true              # reuse cached LLM responses (never re-bill dev iterations)
+dry_run: false           # true = no API calls, stubbed responses (plumbing tests)

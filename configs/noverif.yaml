@@ -1,0 +1,19 @@
+# Ablation: planner on, verifier OFF. Isolates the verifier's precision contribution.
+model: z-ai/glm-5.3-flash
+temperature: 0.2
+target: synthapp
+
+reasoning:
+  max_tokens: 3000
+
+budgets:
+  max_steps: 40
+  max_tokens: 300000
+  wall_clock_s: 900
+
+ablation:
+  planner: true
+  verifier: false
+
+cache: true
+dry_run: false

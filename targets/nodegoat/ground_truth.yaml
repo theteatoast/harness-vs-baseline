@@ -1,0 +1,148 @@
+# Ground truth for OWASP NodeGoat (vendored).
+# Provenance: each entry corresponds to a documented NodeGoat vulnerability — the app's own
+# tutorial (app/views/tutorial/a1..a10, ssrf, redos) and the in-code "// Fix for Ax ..."
+# comments that mark the deliberate flaw and its remediation. Line numbers verified against
+# the vendored source on 2026-09-22.
+#
+# NOTE: app/views/tutorial/** is the answer key and MUST be excluded from what the agent
+# sees (see corpus in-scope config). It is used only to author this file.
+#
+# Paths are relative to this file's directory (the corpus root).
+
+target: nodegoat
+vulns:
+  - id: nosql-injection-threshold
+    file: app/data/allocations-dao.js
+    line_start: 77
+    line_end: 79
+    cwe: CWE-943
+    desc: "NoSQL/server-side-JS injection: unsanitized `threshold` interpolated into a $where clause"
+    keywords: [nosql, injection, $where, threshold, sanitiz]
+
+  - id: ssjs-eval-injection
+    file: app/routes/contributions.js
+    line_start: 32
+    line_end: 34
+    cwe: CWE-95
+    desc: "Server-side JavaScript injection via eval() on req.body.preTax/afterTax/roth"
+    keywords: [eval, injection, code execution, ssjs, rce]
+
+  - id: plaintext-password-storage
+    file: app/data/user-dao.js
+    line_start: 24
+    line_end: 31
+    cwe: CWE-256
+    desc: "Password stored in plaintext (bcrypt hashing commented out); also compared in plaintext"
+    keywords: [password, plaintext, bcrypt, hash, storage, cleartext]
+
+  - id: log-injection
+    file: app/routes/session.js
+    line_start: 64
+    line_end: 64
+    cwe: CWE-117
+    desc: "Unsanitized userName written to logs — CRLF/log forging"
+    keywords: [log, injection, crlf, forging, console.log]
+
+  - id: username-enumeration
+    file: app/routes/session.js
+    line_start: 85
+    line_end: 94
+    cwe: CWE-204
+    desc: "Distinct login errors for invalid username vs invalid password enable user enumeration"
+    keywords: [username, enumeration, error message, invalid password, disclosure]
+
+  - id: session-fixation
+    file: app/routes/session.js
+    line_start: 116
+    line_end: 117
+    cwe: CWE-384
+    desc: "Session id not regenerated on login (no req.session.regenerate) — session fixation"
+    keywords: [session, fixation, regenerate, login]
+
+  - id: weak-password-policy
+    file: app/routes/session.js
+    line_start: 144
+    line_end: 144
+    cwe: CWE-521
+    desc: "Weak password policy: PASS_RE=/^.{1,20}$/ allows trivial passwords"
+    keywords: [password, policy, weak, regex, complexity]
+
+  - id: xss-wrong-context-encoding
+    file: app/routes/profile.js
+    line_start: 24
+    line_end: 31
+    cwe: CWE-79
+    desc: "website encoded for HTML but rendered in a URL context — XSS via javascript: URL"
+    keywords: [xss, encode, context, url, website, esapi]
+
+  - id: redos-bank-routing
+    file: app/routes/profile.js
+    line_start: 59
+    line_end: 59
+    cwe: CWE-1333
+    desc: "Catastrophic-backtracking regex /([0-9]+)+#/ on bankRouting — ReDoS"
+    keywords: [redos, regex, backtracking, denial of service, catastrophic]
+
+  - id: idor-allocations
+    file: app/routes/index.js
+    line_start: 63
+    line_end: 63
+    cwe: CWE-639
+    desc: "/allocations/:userId has no ownership check — insecure direct object reference"
+    keywords: [idor, direct object reference, authorization, userId, access]
+
+  - id: missing-access-control-benefits
+    file: app/routes/index.js
+    line_start: 55
+    line_end: 60
+    cwe: CWE-862
+    desc: "Benefits routes lack isAdmin middleware — missing function-level access control"
+    keywords: [access control, authorization, isAdmin, function level, privilege]
+
+  - id: open-redirect-learn
+    file: app/routes/index.js
+    line_start: 70
+    line_end: 73
+    cwe: CWE-601
+    desc: "/learn redirects to attacker-controlled req.query.url — open redirect"
+    keywords: [open redirect, redirect, url, unvalidated]
+
+  - id: ssrf-research
+    file: app/routes/research.js
+    line_start: 14
+    line_end: 16
+    cwe: CWE-918
+    desc: "needle.get on attacker-controlled req.query.url — server-side request forgery"
+    keywords: [ssrf, request forgery, needle, url, fetch]
+
+  - id: insecure-session-cookie
+    file: server.js
+    line_start: 92
+    line_end: 102
+    cwe: CWE-1004
+    desc: "Session cookie lacks httpOnly/secure flags (config commented out)"
+    keywords: [cookie, httponly, secure, session, flag]
+
+  - id: missing-csrf-protection
+    file: server.js
+    line_start: 104
+    line_end: 113
+    cwe: CWE-352
+    desc: "CSRF protection (csurf) disabled — no anti-CSRF tokens on state-changing forms"
+    keywords: [csrf, csurf, token, cross-site request forgery]
+
+  - id: swig-autoescape-disabled
+    file: server.js
+    line_start: 135
+    line_end: 142
+    cwe: CWE-79
+    desc: "Swig templating autoescape:false — stored/reflected XSS across all views"
+    keywords: [xss, autoescape, template, swig, escaping]
+
+  - id: insecure-http-no-tls
+    file: server.js
+    line_start: 144
+    line_end: 147
+    cwe: CWE-319
+    desc: "App served over plain HTTP (HTTPS commented out) — sensitive data in cleartext"
+    keywords: [https, tls, http, cleartext, encryption, transport]
